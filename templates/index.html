@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf App</title>
+    <link rel="shortcut icon" href="static\favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static\css\styles.css">
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+    });
+</script>
+<body>
+    <header>
+        <h1>My Bookshelf</h1>
+        <nav>
+            <ul>
+                <li><a href="http://localhost:5000/">Home</a></li>
+                <li><a href="http://localhost:5000/add_book">Add Book</a></li>
+                <li><a href="http://localhost:5000/collection">Collection</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Recently Added Books</h2>
+        <p>Current time: <span id="current-time">{{ current_time }}</span></p>
+        <ul class="book-list">
+            {% for book in books[:5] %}
+            <li>
+                <h3>{{ book.title }}</h3>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Rating:</strong> {{ book.rating }}/5</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Bookshelf App | Contact: info@bookshelf.com | Phone: (123) 456-7890</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+            const timeElement = document.getElementById('current-time');
+            const evtSource = new EventSource("http://localhost:5000/time-feed");
+            
+            evtSource.onmessage = function(event) {
+                timeElement.textContent = event.data;
+            };
+        });
+    </script>
+</body>
+</html>

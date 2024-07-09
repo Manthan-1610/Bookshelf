@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection - Bookshelf App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="static\favicon.ico">
+    <link rel="stylesheet" href="static\css\styles.css">
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
+<body>
+    <header>
+        <h1>My Bookshelf</h1>
+        <nav>
+            <ul>
+                <li><a href="http://localhost:5000/">Home</a></li>
+                <li><a href="http://localhost:5000/add_book">Add Book</a></li>
+                <li><a href="http://localhost:5000/collection">Collection</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>My Book Collection</h2>
+        <table class="book-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.rating }}/5</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 Bookshelf App | Contact: info@bookshelf.com | Phone: (123) 456-7890</p>
+    </footer>
+</body>
+</html>
