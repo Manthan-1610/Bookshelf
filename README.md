@@ -60,4 +60,3 @@ Bookshelf App is a simple web application to manage your book collection. You ca
 
    ```sh
    python app.py
-  ```
